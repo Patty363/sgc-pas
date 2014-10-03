@@ -1,33 +1,35 @@
-"""
-Django settings for ccc project.
+# -*- coding: UTF-8 -*-
 
-For more information on this file, see
-https://docs.djangoproject.com/en/1.6/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.6/ref/settings/
-"""
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+#         app: Control de Planes de Acción
+#      modulo: ccc.core.settings
+# descripcion: Configuración del Proyecto
+#       autor: Javier Sanchez Toledano
+#       fecha: miércoles, 1 de octubre de 2014
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+from unipath import Path
+
+PROJECT_DIR = Path(__file__).ancestor(2)
+MEDIA_ROOT = PROJECT_DIR.child("media")
+STATIC_URL = '/assets/'
+MEDIA_URL = '/media/'
+STATIC_ROOT = PROJECT_DIR.child("static")
+STATICFILES_DIRS = (
+    PROJECT_DIR.child("assets"),
+)
+TEMPLATE_DIRS = (
+    PROJECT_DIR.child("templates"),
+)
+
 SECRET_KEY = 'l^$i9+644l_!7$v+z4orhd2x*$$9bavkimblp5327#3)-ue&e%'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
-# Application definition
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -36,6 +38,14 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # 'south',
+    'annoying',
+    'smart_selects',
+    'tinymce',
+
+    'pas',
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -51,32 +61,15 @@ ROOT_URLCONF = 'core.urls'
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': Path(PROJECT_DIR, 'data/pas.db'),
     }
 }
 
-# Internationalization
-# https://docs.djangoproject.com/en/1.6/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
+LANGUAGE_CODE = 'es-mx'
+TIME_ZONE = 'Mexico/General'
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.6/howto/static-files/
-
-STATIC_URL = '/static/'

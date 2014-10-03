@@ -56,4 +56,7 @@ target/
 # Yo, Toledano
 .idea/
 *.sublime-project
+*.sublime-workspace
+migrations/
+migration/
 
