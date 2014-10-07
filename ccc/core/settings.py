@@ -7,7 +7,6 @@
 #       fecha: miércoles, 1 de octubre de 2014
 
 
-
 from unipath import Path
 
 PROJECT_DIR = Path(__file__).ancestor(2)
@@ -39,13 +38,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # 'south',
     'annoying',
     'smart_selects',
     'tinymce',
 
     'pas',
-
 )
 
 MIDDLEWARE_CLASSES = (
