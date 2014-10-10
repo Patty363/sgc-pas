@@ -59,4 +59,6 @@ target/
 *.sublime-workspace
 migrations/
 migration/
+media/
+ccc/media/
 

@@ -15,8 +15,22 @@ from django.http import HttpResponseRedirect
 
 @render_to('index.html')
 def home(request):
-    titulo = 'Control de Planes de Acción y Seguimiento'
-    return {'title': titulo}
+    planes = Plan.objects.all()
+    titulo = u'Control de Planes de Acción y Seguimiento'
+    return {
+        'planes': planes,
+        'title': titulo
+    }
+
+
+@render_to('plan.html')
+def plan(request, id):
+    plan = Plan.objects.get(pk=id)
+    titulo = u'%s | Plan de Acción y Seguimiento' % plan.nombre
+    return {
+        'title': titulo,
+        'plan': plan
+    }
 
 
 @render_to('add.html')

@@ -4,11 +4,15 @@
 #      desc: interface de administración
 
 from django.contrib import admin
-from .models import Plan, Accion
+from .models import Plan, Accion, Pipol
 
 
 # Register your models here.
-class AccionInline(admin.StackedInline):
+class PipolAdmin(admin.ModelAdmin):
+    fields = ('nombre', )
+
+
+class AccionInline(admin.TabularInline):
     model = Accion
     extra = 1
 
@@ -16,22 +20,26 @@ class AccionInline(admin.StackedInline):
 class PlanAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Identificación', {'fields': [
+            'fecha_llenado',
             'fecha_deteccion',
             'proceso', 'tipo',
             'deteccion', 'mejora',
-            'slug'
+            'nombre'
         ]}),
+        ('Reacción', {'fields': [
+            'correccion',
+            'consecuencias',
+            'reaccion_responsable',
+            'reaccion_evidencia'], 'classes': ['collapse']}),
         ('Revisión', {'fields': [
             'redaccion',
             'declaracion',
             'evidencia',
-            'requisitos'], 'classes': ['collapse']}),
+            'requisitos',
+            'relacionadas'], 'classes': ['collapse']}),
         ('Responsabilidades', {'fields': [
             'informacion', 'aplicacion',
             'responsable'], 'classes': ['collapse']}),
-        ('Reacción', {'fields': [
-            'correccion',
-            'consecuencias'], 'classes': ['collapse']}),
         ('Determinación de las Causas', {'fields': [
             'pescadito', 'cincopq', 'causa_raiz'],
             'classes': ['collapse']}),
@@ -46,3 +54,4 @@ class PlanAdmin(admin.ModelAdmin):
     inlines = [AccionInline]
 
 admin.site.register(Plan, PlanAdmin)
+admin.site.register(Pipol, PipolAdmin)

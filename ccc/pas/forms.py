@@ -48,27 +48,20 @@ class PlanForm(forms.ModelForm):
     )
 
     redaccion = forms.CharField(
-        widget=forms.Textarea(
-            attrs={'cols': 60, 'rows': 3, 'class': 'form-control'}
-        )
+        widget=TinyMCE(attrs={'cols': 50, 'rows': 3, 'class': 'form-control'})
     )
     declaracion = forms.CharField(
-        widget=forms.Textarea(
-            attrs={'cols': 60, 'rows': 3, 'class': 'form-control'}
-        )
+        widget=TinyMCE(attrs={'cols': 50, 'rows': 3, 'class': 'form-control'})
     )
     evidencia = forms.CharField(
-        widget=forms.Textarea(
-            attrs={'cols': 60, 'rows': 3, 'class': 'form-control'}
-        )
+        widget=TinyMCE(attrs={'cols': 50, 'rows': 3, 'class': 'form-control'})
     )
     correccion = forms.CharField(
-        widget=forms.Textarea(
-            attrs={'cols': 60, 'rows': 3, 'class': 'form-control'}
-        )
+        widget=TinyMCE(attrs={'cols': 50, 'rows': 3, 'class': 'form-control'})
     )
     causa_raiz = forms.CharField(
-        widget=forms.Textarea(
-            attrs={'cols': 60, 'rows': 3, 'class': 'form-control'}
-        )
+        widget=TinyMCE(attrs={'cols': 50, 'rows': 3, 'class': 'form-control'})
+    )
+    relacionadas = forms.CharField(
+        widget=TinyMCE(attrs={'cols': 50, 'rows': 3, 'class': 'form-control'})
     )
