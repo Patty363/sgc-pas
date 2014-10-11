@@ -76,17 +76,29 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-4 well" style="height: 200px; overflow-y: scroll;">
-            <h4>Evidencias</h4>
-            {{ plan.evidencia|safe }}
+          <div class="col-md-4">
+            <div class="thumbnail">
+              <div class="caption">
+                <h3>Evidencias</h3>
+                {{ plan.evidencia|safe }}
+              </div>
+            </div>
           </div>
-          <div class="col-md-4 well style="height: 200px; overflow-y: scroll;"">
-            <h4>Requisitos al que hace referencia</h4>
-            {{ plan.requisitos|safe }}
+          <div class="col-md-4">
+            <div class="thumbnail">
+              <div class="caption">
+                <h3>Requisitos al que hace referencia</h3>
+                {{ plan.requisitos|safe }}
+              </div>
+            </div>
           </div>
-          <div class="col-md-4 well style="height: 200px; overflow-y: scroll;"">
-            <h4>No conformidades o NCP relacionadas</h4>
-            {{ plan.relacionadas|safe }}
+          <div class="col-md-4">
+            <div class="thumbnail">
+              <div class="caption">
+                <h3>No conformidades o NCP relacionadas</h3>
+                {{ plan.relacionadas|safe }}
+              </div>
+            </div>
           </div>
         </div>
       </div>
