@@ -4,7 +4,23 @@
 #      desc: interface de administración
 
 from django.contrib import admin
-from .models import Plan, Accion, Pipol
+from .models import Plan, Accion, Pipol, Seguimiento
+
+
+
+class SeguimientoInline(admin.TabularInline):
+    model = Seguimiento
+    extra = 1
+
+
+class AccionAdmin(admin.ModelAdmin):
+    fields = (
+        'plan', 'accion', 'fecha', 'responsable',
+    )
+    inlines = [SeguimientoInline,]
+    date_hierarchy = 'fecha'
+    ordering = ('fecha', 'id')
+    list_display = ('plan', 'fecha', 'responsable', 'estado')
 
 
 # Register your models here.
@@ -55,3 +71,4 @@ class PlanAdmin(admin.ModelAdmin):
 
 admin.site.register(Plan, PlanAdmin)
 admin.site.register(Pipol, PipolAdmin)
+admin.site.register(Accion, AccionAdmin)

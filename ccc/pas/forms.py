@@ -15,6 +15,7 @@ from tinymce.widgets import TinyMCE
 class PlanForm(forms.ModelForm):
     class Meta:
         model = Plan
+        exclude = []
 
     fecha_deteccion = forms.DateField(
         input_formats=['%d/%m/%Y', ],

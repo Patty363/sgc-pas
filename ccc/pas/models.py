@@ -63,11 +63,12 @@ MEJORA = (
 )
 
 A_ESTADO = (
-    (1, 'Abierta'),
-    (2, 'En Seguimiento'),
-    (3, 'Quemada'),
-    (4, 'Cerrada'),
-    (5, 'Cerrada fuera de tiempo')
+    (1, u'Seguimiento'),
+    (2, u'Revisión de Evidencia'),
+    (3, u'En espera de una respuesta'),
+    (4, u'En espera de una acción'),
+    (5, u'En espera de un evento'),
+    (6, u'Cerrada')
 )
 
 
@@ -77,6 +78,9 @@ PNG = 'image/png'
 
 
 class Plan(models.Model):
+    class Meta:
+        verbose_name = _(u'Plan de Acción')
+        verbose_name_plural = _(u'Planes de Acción')
     # #################################### #
     # I. Identificación del plan
     fecha_llenado = models.DateField(
@@ -139,23 +143,41 @@ class Plan(models.Model):
 
 
 class Accion(models.Model):
+    class Meta:
+        verbose_name = _(u'Acción Correctiva')
+        verbose_name_plural = _('Acciones Correctivas')
     plan = models.ForeignKey(Plan)
     accion = HTMLField()
     recursos = HTMLField(blank=True, null=True)
     fecha = models.DateField()
+    responsable = models.ForeignKey(Pipol)
+
+    def _get_estado(self):
+        "Regresa el estado de una acción correctiva, de acuerdo al último seguimiento capturado"
+        if self.seguimiento_set.count() == 0:
+            if self.fecha >= datetime.date.today():
+                return 'Abierta en Tiempo'
+            else:
+                return 'Abierta Fuera de Tiempo'
+        else:
+            return self.seguimiento_set.latest().get_estado_display()
+    estado = property(_get_estado)
+
+
+    def __unicode__(self):
+        return u'%s - %s: %s' % (self.id, self.plan, self.estado)
+
+class Seguimiento(TrackingFields, models.Model):
+    class Meta:
+        verbose_name = _(u'Seguimiento de Acciones')
+        verbose_name_plural = _('Seguimiento')
+        get_latest_by = 'fecha'
+    accion = models.ForeignKey(Accion)
+    descripcion = HTMLField()
+    fecha = models.DateField()
+    evidencia = models.FileField(blank=True, null=True)
     estado = models.PositiveSmallIntegerField(choices=A_ESTADO)
     responsable = models.ForeignKey(Pipol)
 
     def __unicode__(self):
-        return u'%s - %s' % (self.id, self.plan)
-
-
-class Seguimiento(TrackingFields, models.Model):
-    accion = models.ForeignKey(Accion)
-    descripcion = HTMLField()
-    fecha = models.DateField()
-    evidencia = models.FileField()
-    responsable = models.CharField(max_length=30)
-
-    def __unicode__(self):
-        return self.id
+        return '%s - %s: %s' % (self.accion, self.fecha, self.get_estado_display())
