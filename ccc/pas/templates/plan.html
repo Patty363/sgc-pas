@@ -216,7 +216,11 @@
                   <td>{{ a.accion|safe }}</td>
                   <td>{{ a.fecha|date:"d/b/Y" }}</td>
                   <td>{{ a.responsable }}</td>
-                  <td>{{ a.seguimiento_set.count }}</td>
+                  <td>
+                    <button type="button" class="btn btn-danger" data-toggle="popover" title="Popover title" data-content="Esta acción tiene <b>{{ a.seguimiento_set.count }}</b> acciones de seguimiento">
+                      {{ a.seguimiento_set.count }}
+                    </button>
+                  </td>
                   <td>{{ a.estado }}</td>
                 </tr>
               {% endfor %}
