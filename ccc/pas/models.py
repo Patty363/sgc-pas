@@ -137,9 +137,6 @@ class Plan(models.Model):
     def __unicode__(self):
         return u'%s' % self.nombre
 
-    # def tipo_mime(self):
-    #    return magic.from_file(self.reaccion_evidencia.file.name, mime=True)
-
 
 class Accion(models.Model):
     class Meta:
@@ -171,6 +168,7 @@ class Seguimiento(TrackingFields, models.Model):
         verbose_name = _(u'Seguimiento de Acciones')
         verbose_name_plural = _('Seguimiento')
         get_latest_by = 'fecha'
+        get_latest_by = 'modified'
     accion = models.ForeignKey(Accion)
     descripcion = HTMLField()
     fecha = models.DateField()
