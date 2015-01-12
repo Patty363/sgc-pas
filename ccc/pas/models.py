@@ -163,7 +163,6 @@ class Accion(models.Model):
             return self.seguimiento_set.latest().get_estado_display()
     estado = property(_get_estado)
 
-
     def __unicode__(self):
         return u'%s - %s: %s' % (self.id, self.plan, self.estado)
 
@@ -180,4 +179,4 @@ class Seguimiento(TrackingFields, models.Model):
     responsable = models.ForeignKey(Pipol)
 
     def __unicode__(self):
-        return '%s - %s: %s' % (self.accion, self.fecha, self.get_estado_display())
+        return u'%s - %s: %s' % (self.accion, self.fecha, self.get_estado_display())
