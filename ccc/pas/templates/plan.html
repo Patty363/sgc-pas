@@ -6,6 +6,10 @@
     var strWindowFeatures = "menubar=no,resizable=no,scrollbars=yes,status=no,width=600,height=400";
     window.open(pagina, 'window', strWindowFeatures).focus();
   }
+
+  $('#myModal').on('hide.bs.modal', function(e) {
+      $(this).removeData('bs.modal');
+  });
 </script>
 {% endblock post_footer %}
 
@@ -217,9 +221,9 @@
                   <td>{{ a.fecha|date:"d/b/Y" }}</td>
                   <td>{{ a.responsable }}</td>
                   <td>
-                    <button type="button" class="btn btn-danger" data-toggle="popover" title="Popover title" data-content="Esta acción tiene <b>{{ a.seguimiento_set.count }}</b> acciones de seguimiento">
+                    <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal" href="{%  url 'seguimiento' id=a.id %}">
                       {{ a.seguimiento_set.count }}
-                    </button>
+                    </a>
                   </td>
                   <td>{{ a.estado }}</td>
                 </tr>
@@ -232,4 +236,19 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 {% endblock contenido %}

@@ -7,7 +7,7 @@
 #       fecha: miércoles, 1 de octubre de 2014
 
 
-from .models import Plan
+from .models import Plan, Accion
 from .forms import PlanForm
 from annoying.decorators import render_to
 from django.http import HttpResponseRedirect
@@ -53,4 +53,12 @@ def add(request, pas_id=None):
     return {
         'title': 'Agregar nuevo PAS',
         'form': form
+    }
+
+@render_to('seguimiento.html')
+def seguimiento(request, id):
+    accion = Accion.objects.get(pk=id)
+    return {
+        'title': 'Lista de actividades de seguimiento',
+        'accion': accion
     }

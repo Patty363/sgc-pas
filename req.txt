@@ -1,0 +1,8 @@
+Django==1.7
+Unipath==1.0
+django-annoying==0.8.0
+django-smart-selects==1.0.9
+django-tinymce==1.5.3
+ipython==2.3.0
+python-magic==0.4.6
+wsgiref==0.1.2
