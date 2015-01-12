@@ -10,7 +10,7 @@
 from django.db import models
 from tinymce.models import HTMLField
 import datetime
-import magic
+# import magic
 from django.utils.translation import ugettext as _
 
 
@@ -70,7 +70,6 @@ A_ESTADO = (
     (5, u'En espera de un evento'),
     (6, u'Cerrada')
 )
-
 
 JPG = 'image/jpeg'
 PDF = 'application/pdf'
@@ -138,8 +137,8 @@ class Plan(models.Model):
     def __unicode__(self):
         return u'%s' % self.nombre
 
-    def tipo_mime(self):
-        return magic.from_file(self.reaccion_evidencia.file.name, mime=True)
+    # def tipo_mime(self):
+    #    return magic.from_file(self.reaccion_evidencia.file.name, mime=True)
 
 
 class Accion(models.Model):
@@ -165,6 +164,7 @@ class Accion(models.Model):
 
     def __unicode__(self):
         return u'%s - %s: %s' % (self.id, self.plan, self.estado)
+
 
 class Seguimiento(TrackingFields, models.Model):
     class Meta:
