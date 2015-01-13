@@ -13,7 +13,7 @@ from annoying.decorators import render_to
 from django.http import HttpResponseRedirect
 
 
-@render_to('index.html')
+@render_to('index_pas.html')
 def home(request):
     planes = Plan.objects.all()
     titulo = u'Control de Planes de Acción y Seguimiento'
