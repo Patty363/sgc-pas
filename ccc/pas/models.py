@@ -110,15 +110,15 @@ class Plan(models.Model):
     # #################################### #
     # IV. Reacción
     correccion = HTMLField(default="", blank=True, null=True)
-    consecuencias = models.FileField(blank=True, null=True)
+    consecuencias = models.FileField(upload_to='pas', blank=True, null=True)
     reaccion_responsable = models.ForeignKey(
         Pipol, blank=True, null=True)
-    reaccion_evidencia = models.FileField(blank=True, null=True)
+    reaccion_evidencia = models.FileField(upload_to='pas', blank=True, null=True)
 
     # #################################### #
     # V. Determinación de las Causas
-    pescadito = models.FileField(blank=True, null=True)
-    cincopq = models.FileField('5 Por qués', blank=True, null=True)
+    pescadito = models.FileField(upload_to='pas', blank=True, null=True)
+    cincopq = models.FileField('5 Por qués', upload_to='pas', blank=True, null=True)
     causa_raiz = HTMLField(default='', blank=True, null=True)
 
     # #################################### #
@@ -172,7 +172,7 @@ class Seguimiento(TrackingFields, models.Model):
     accion = models.ForeignKey(Accion)
     descripcion = HTMLField()
     fecha = models.DateField()
-    evidencia = models.FileField(blank=True, null=True)
+    evidencia = models.FileField(upload_to='pas', blank=True, null=True)
     estado = models.PositiveSmallIntegerField(choices=A_ESTADO)
     responsable = models.ForeignKey(Pipol)
 

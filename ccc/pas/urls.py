@@ -10,7 +10,7 @@ from django.conf.urls import patterns, url
 
 urlpatterns = patterns(
     'pas.views',
-    url(r'^$', 'home', name='pas'),
+    url(r'^$', 'pas_home', name='pas'),
     url(r'^plan/(?P<id>\d+)$', 'plan', name='pas_plan'),
     url(r'^add/$', 'add', name='pas_add'),
     url(r'seguimiento/(?P<id>\d+)$', 'seguimiento', name='seguimiento')

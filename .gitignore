@@ -61,4 +61,5 @@ migrations/
 migration/
 media/
 ccc/media/
+**/data/*.db
 
