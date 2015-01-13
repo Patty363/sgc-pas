@@ -21,6 +21,7 @@ class AccionAdmin(admin.ModelAdmin):
     date_hierarchy = 'fecha'
     ordering = ('fecha', 'id')
     list_display = ('plan', 'fecha', 'responsable', 'estado')
+    list_filter = ('plan', )
 
 
 # Register your models here.

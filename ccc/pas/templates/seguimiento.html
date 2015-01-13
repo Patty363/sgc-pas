@@ -1,9 +1,12 @@
 <div class="modal-content">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title">Actividades de Seguimiento <small>{{ accion }}</small></h4>
+    <h4 class="modal-title">{{ accion }} <small>Actividades de Seguimiento</small></h4
   </div>
   <div class="modal-body">
+    <p>
+      <a class="btn btn-primary" href="/admin/pas/accion/{{ accion.id }}">Editar</a>
+    </p>
     <table class="table table-bordered table-hover">
       <thead>
         <tr>
